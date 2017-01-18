@@ -1,0 +1,43 @@
+{
+  "name": "octoauth/oauth2-twitter-adapter",
+  "type": "library",
+  "description": "An adapter to allow you to interact with the 'abraham/twitteroauth' OAuth1 library alongside the 'phpleague/oauth2-*' libraries",
+  "keywords": [
+    "twitter",
+    "api",
+    "oauth",
+    "oauth2",
+    "twitter api",
+    "twitter oauth"
+  ],
+  "license": "MIT",
+  "homepage": "https://gitlab.com/8w/oauth2-twitter-adapter",
+  "authors": [
+    {
+      "name": "James Fellows",
+      "email": "james.fellows@8-w.co.uk",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "source": "https://gitlab.com/8w/oauth2-twitter-adapter",
+    "issues": "https://gitlab.com/8w/oauth2-twitter-adapter/issues"
+  },
+  "require": {
+    "abraham/twitteroauth": "^0.7.2",
+    "league/oauth2-client": "~1.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^1.11.2",
+    "phpdocumentor/phpdocumentor": "2.*"
+  },
+  "scripts": {
+    "fix": "php-cs-fixer fix",
+    "docs": "phpdoc -d src/ -t docs"
+  },
+  "autoload": {
+    "psr-4": {
+      "OctOAuth\\OAuth2\\": "src/"
+    }
+  }
+}
