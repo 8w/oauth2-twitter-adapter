@@ -100,7 +100,7 @@ class TwitterOAuth1 implements ProviderInterface
      *
      * @throws IdentityProviderException if some fields are missing
      */
-    public function checkCallback($state = null)
+    public function checkCallback(string $state = null)
     {
         $tempToken = $this->tokenStore->getToken();
         if (!isset($_REQUEST['oauth_token'])) {
