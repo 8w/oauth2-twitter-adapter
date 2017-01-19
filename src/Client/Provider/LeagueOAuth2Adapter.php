@@ -68,6 +68,17 @@ class LeagueOAuth2Adapter implements ProviderInterface
     }
 
     /**
+     * Access the underlying Provider object so that it can be used for authenticated (and
+     * unauthenticated) requests.
+     *
+     * @return AbstractProvider The provider.
+     */
+    public function getProvider(): AbstractProvider
+    {
+        return $this->provider;
+    }
+
+    /**
      * @param string $state The "state" CSRF value to check
      *
      * @throws IdentityProviderException If the callback did not include the necessary values

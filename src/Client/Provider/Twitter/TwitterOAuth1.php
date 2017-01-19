@@ -187,13 +187,7 @@ class TwitterOAuth1 implements ProviderInterface
      */
     public function getResourceOwner(AccessToken $accessToken): ResourceOwnerInterface
     {
-        $accessTokenValues = $accessToken->getValues();
-        $connection = new TwitterOAuth(
-            $this->clientID,
-            $this->clientSecret,
-            $accessToken->getToken(),
-            $accessTokenValues["oauth_token_secret"]
-        );
+        $connection = $this->getAuthenticatedConnection($accessToken);
 
         $response = $connection->get("account/verify_credentials",
             [
@@ -210,6 +204,29 @@ class TwitterOAuth1 implements ProviderInterface
         }
 
         return new TwitterResourceOwner($accessToken->getResourceOwnerId(), $response);
+    }
+
+    /**
+     * Access the underlying TwitterOAuth object in order to make API calls as detailed at
+     * https://dev.twitter.com/rest/reference.  For example, to get a user's tweets:
+     *
+     * $client = getAPIConnection($token);
+     * $client->get("search/tweets", ["q" => "twitterapi"]);
+     *
+     * @param AccessToken $accessToken The access token
+     *
+     * @return TwitterOAuth The authenticated TwitterOAuth connection
+     */
+    public function getAuthenticatedConnection(AccessToken $accessToken): TwitterOAuth
+    {
+        $accessTokenValues = $accessToken->getValues();
+        $connection = new TwitterOAuth(
+            $this->clientID,
+            $this->clientSecret,
+            $accessToken->getToken(),
+            $accessTokenValues["oauth_token_secret"]
+        );
+        return $connection;
     }
 
     /**
