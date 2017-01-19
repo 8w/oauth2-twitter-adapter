@@ -1,6 +1,8 @@
 <?php
 namespace OctOAuth\OAuth2\Client\Provider\Token;
 
+use Abraham\TwitterOAuth\Token;
+
 /**
  * Store the token on the $_SESSION
  *
@@ -8,20 +10,20 @@ namespace OctOAuth\OAuth2\Client\Provider\Token;
  */
 class OAuth1TemporaryTokenStoreOnSession implements OAuth1TemporaryTokenStore
 {
-    private static $sessionTemporaryToken = "Authenticator.twitter.temporary_token";
-    private static $sessionTemporaryTokenSecret = "Authenticator.twitter.temporary_token_secret";
+    private static $sessionTemporaryToken = "Authenticator.twitter.token_key";
+    private static $sessionTemporaryTokenSecret = "Authenticator.twitter.token_secret";
 
     /** @inheritdoc */
-    public function saveToken(OAuth1TemporaryToken $token)
+    public function saveToken(Token $token)
     {
-        $_SESSION[self::$sessionTemporaryToken] = $token->getTokenValue();
-        $_SESSION[self::$sessionTemporaryTokenSecret] = $token->getTokenSecret();
+        $_SESSION[self::$sessionTemporaryToken] = $token->key;
+        $_SESSION[self::$sessionTemporaryTokenSecret] = $token->secret;
     }
 
     /** @inheritdoc */
-    public function getToken(): OAuth1TemporaryToken
+    public function getToken(): Token
     {
-        return new OAuth1TemporaryToken(
+        return new Token(
             $_SESSION[self::$sessionTemporaryToken],
             $_SESSION[self::$sessionTemporaryTokenSecret]
         );

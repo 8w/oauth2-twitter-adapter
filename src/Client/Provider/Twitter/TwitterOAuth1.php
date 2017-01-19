@@ -1,13 +1,13 @@
 <?php
 namespace OctOAuth\OAuth2\Client\Provider\Twitter;
 
+use Abraham\TwitterOAuth\Token;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Abraham\TwitterOAuth\TwitterOAuthException;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
 use OctOAuth\OAuth2\Client\Provider\ProviderInterface;
-use OctOAuth\OAuth2\Client\Provider\Token\OAuth1TemporaryToken;
 use OctOAuth\OAuth2\Client\Provider\Token\OAuth1TemporaryTokenStore;
 
 /**
@@ -80,7 +80,7 @@ class TwitterOAuth1 implements ProviderInterface
                 $e->getMessage());
         }
 
-        $temporary_token = new OAuth1TemporaryToken(
+        $temporary_token = new Token(
             $request_token['oauth_token'],
             $request_token['oauth_token_secret']);
 
@@ -88,7 +88,7 @@ class TwitterOAuth1 implements ProviderInterface
 
         $url = $connection->url(
             'oauth/authorize',
-            ['oauth_token' => $temporary_token->getTokenValue()]);
+            ['oauth_token' => $temporary_token->key]);
 
         return $url;
     }
@@ -108,12 +108,12 @@ class TwitterOAuth1 implements ProviderInterface
                 "No oauth_token received on callback",
                 400,
                 print_r($_GET, true));
-        } elseif ($_REQUEST['oauth_token'] !== $tempToken->getTokenValue()) {
+        } elseif ($_REQUEST['oauth_token'] !== $tempToken->key) {
             throw new IdentityProviderException(
                 "oauth_token received on callback ("
                 . $_REQUEST['oauth_token']
                 . ") doesn't match the one originally passed to Twitter ("
-                . $tempToken->getTokenValue()
+                . $tempToken->key
                 . ")",
                 400,
                 print_r($_GET, true));
@@ -149,8 +149,8 @@ class TwitterOAuth1 implements ProviderInterface
         $connection = new TwitterOAuth(
             $this->clientID,
             $this->clientSecret,
-            $tempToken->getTokenValue(),
-            $tempToken->getTokenSecret()
+            $tempToken->key,
+            $tempToken->secret
         );
 
         try {
