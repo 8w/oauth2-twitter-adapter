@@ -4,9 +4,9 @@ Twitter is conspicously absent from the list of OAuth2 providers [support by the
 
 This package provides a wrapper for the excellent `abraham/twitteroauth` library (which uses OAuth 1.0 to interact with Twitter), so that it can be used more easily alongside the various PhpLeague's OAuth2 clients.
  
- ## Installation
+## Installation
  
- To install, use [composer](https://getcomposer.org/):
+To install, use [composer](https://getcomposer.org/):
  
 ```bash
 ./composer.phar require octoauth/oauth2-twitter-adapter
