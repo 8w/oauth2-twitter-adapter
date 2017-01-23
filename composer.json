@@ -25,11 +25,11 @@
   },
   "require": {
     "abraham/twitteroauth": "^0.7.2",
-    "league/oauth2-client": "~1.0"
+    "league/oauth2-client": "^1.4"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^1.11.2",
-    "phpdocumentor/phpdocumentor": "2.*"
+    "phpdocumentor/phpdocumentor": "^2.9"
   },
   "scripts": {
     "fix": "php-cs-fixer fix",
