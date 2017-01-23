@@ -48,7 +48,7 @@ class TwitterOAuth1 implements ProviderInterface
      * @return string  Always returns an empty string - the OAuth1 provider uses a combination of a
      *                 nonce and a temporary token to identify CSRF
      */
-    public function getState(): string
+    public function getState()
     {
         // state isn't used in OAUth1 - instead, the temporary resource token is passed
         // forward and then back again

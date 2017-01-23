@@ -18,7 +18,7 @@ interface ProviderInterface
      *
      * @return string The state string
      */
-    public function getState(): string;
+    public function getState();
 
     /**
      * Get the URL that the user should be redirected to to authorize the token request.
@@ -30,7 +30,7 @@ interface ProviderInterface
      *                                   of Twitter (which uses OAuth1), a temporary token must be
      *                                   retrieved from Twitter to be included in this URL.
      */
-    public function getAuthorizationUrl(array $options = null): string;
+    public function getAuthorizationUrl(array $options = []);
 
     /**
      * Call the provider to convert the auth code into an access token.

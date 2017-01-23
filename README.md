@@ -38,6 +38,7 @@ $provider = new TwitterOAuth1(
 $authURL = $provider->getAuthorizationUrl();
 
 header('Location: {$authURL}', true, 303);
+exit;
 ```
 
 Your user will now be sent off to the OAuth authorization page, and be redirected back to the `redirectUri` configured above when they've either approved or denied the authorization.

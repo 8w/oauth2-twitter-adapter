@@ -30,7 +30,7 @@ class LeagueOAuth2Adapter implements ProviderInterface
     }
 
     /** @inheritdoc */
-    public function getState(): string
+    public function getState()
     {
         return $this->provider->getState();
     }
