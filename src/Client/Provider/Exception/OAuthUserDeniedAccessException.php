@@ -1,5 +1,5 @@
 <?php
-namespace OctOAuth\OAuth2\Client\Provider;
+namespace OctOAuth\OAuth2\Client\Provider\Exception;
 
 use Exception;
 
