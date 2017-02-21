@@ -6,6 +6,7 @@ use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
+use OctOAuth\OAuth2\Client\Provider\Exception\OAuthUserDeniedAccessException;
 
 /**
  * An adapter class that implements the ProviderInterface (but passes almost everything straight
@@ -78,7 +79,7 @@ class LeagueOAuth2Adapter implements ProviderInterface
     {
         if (!empty($_GET['error'])) {
             if ($_GET['error'] === "access_denied") {
-                throw new OAuthUserDeniedAccessException($_GET["error"]);
+                throw new OAuthUserDeniedAccessException($_GET);
             } else {
                 throw new IdentityProviderException($_GET["error"], 400, "");
             }
