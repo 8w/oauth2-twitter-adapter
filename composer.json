@@ -24,7 +24,7 @@
     "issues": "https://github.com/8w/oauth2-twitter-adapter/issues"
   },
   "require": {
-    "abraham/twitteroauth": "^0.7.2",
+    "abraham/twitteroauth": "^1.0",
     "league/oauth2-client": "^2.0",
     "ext-json": "*"
   },
