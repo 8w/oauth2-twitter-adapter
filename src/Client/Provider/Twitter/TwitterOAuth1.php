@@ -170,7 +170,6 @@ class TwitterOAuth1 implements ProviderInterface
         // Twitter-specific ones
         $this->renameArrayKey($tokenArray, "oauth_token", "access_token");
         $this->renameArrayKey($tokenArray, "user_id", "resource_owner_id");
-        $this->renameArrayKey($tokenArray, "x_auth_expires", "expires");
         // oauth_token_secret
         // screen_name
 
