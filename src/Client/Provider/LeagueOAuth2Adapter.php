@@ -6,6 +6,7 @@ use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
 use League\OAuth2\Client\Token\AccessToken;
+use League\OAuth2\Client\Token\AccessTokenInterface;
 use OctOAuth\OAuth2\Client\Provider\Exception\OAuthUserDeniedAccessException;
 
 /**
@@ -48,6 +49,7 @@ class LeagueOAuth2Adapter implements ProviderInterface
      * @param string $authCode The auth code to convert into an access token (via the provider)
      *
      * @return AccessToken The access token
+     * @throws IdentityProviderException
      */
     public function getAccessTokenFromAuthCode(string $authCode): AccessToken
     {
